@@ -1,0 +1,548 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Environmental Data</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+</head>
+<body>
+    <h1>Environmental Data for the Time Range: 
+        {{ current_time|date:"Y-m-d H:i:s" }}
+    </h1>
+
+    <!-- Table displaying data -->
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Year</th>
+                <th>Time Range</th>
+                <th>Temperature Max</th>
+                <th>Temperature Min</th>
+                <th>Humidity Max</th>
+                <th>Humidity Min</th>
+                <th>Lux Level Max</th>
+                <th>Lux Level Min</th>
+                <th>Soil Moisture Max</th>
+                <th>Soil Moisture Min</th>
+                <th>CO2 Max</th>
+                <th>CO2 Min</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for year, data in data_per_year.items %}
+                {% for row in data %}
+                    <tr>
+                        <td>{{ year }}</td>
+                        <td>{{ row.1 }} to {{ row.2 }}</td>
+                        <td>{{ row.3 }}</td>
+                        <td>{{ row.4 }}</td>
+                        <td>{{ row.5 }}</td>
+                        <td>{{ row.6 }}</td>
+                        <td>{{ row.7 }}</td>
+                        <td>{{ row.8 }}</td>
+                        <td>{{ row.9 }}</td>
+                        <td>{{ row.10 }}</td>
+                        <td>{{ row.11 }}</td>
+                        <td>{{ row.12 }}</td>
+                    </tr>
+                {% endfor %}
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <!-- Optional: Add a button to trigger alerts or interactions -->
+<!-- Graph Container -->
+<h1 style="text-align: center; color: #7bff00; font-size: 24px; font-weight: bold; margin-top: 20px;">Last 30 hours Tempurature data from the current time</h1>
+
+<div class="graph2-container">
+    <canvas id="graph2-lineChart" class="graph2-chart"></canvas>
+</div>
+
+<!-- Graph Line Chart -->
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    // Fetch data from the backend
+    fetch('/temperature-chart/')
+        .then(response => response.json())
+        .then(data => {
+            const ctx = document.getElementById("graph2-lineChart").getContext("2d");
+
+            const graph2Chart = new Chart(ctx, {
+                type: 'line',  // Set chart type to line
+                data: {
+                    labels: data.labels,  // Use labels from backend
+                    datasets: [{
+                        label: 'Max Temperature',
+                        data: data.temperature_max,  // Max temperature data from backend
+                        backgroundColor: 'rgba(255, 87, 51, 0.2)',  // Fill color
+                        borderColor: '#FF5733',  // Line color
+                        borderWidth: 2,
+                        tension: 0.4  // Smooth curve
+                    }, {
+                        label: 'Min Temperature',
+                        data: data.temperature_min,  // Min temperature data from backend
+                        backgroundColor: 'rgba(0, 123, 255, 0.2)',  // Fill color
+                        borderColor: '#007bff',  // Line color
+                        borderWidth: 2,
+                        tension: 0.4  // Smooth curve
+                    }]
+                },
+                options: {
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                            labels: {
+                                color: '#ffffff'  // White legend text
+                            }
+                        }
+                    },
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Time',
+                                color: '#ffffff'  // White color for x-axis title
+                            },
+                            ticks: {
+                                color: '#ffffff'  // White color for x-axis labels
+                            }
+                        },
+                        y: {
+                            title: {
+                                display: true,
+                                text: 'Temperature (°C)',
+                                color: '#ffffff'  // White color for y-axis title
+                            },
+                            ticks: {
+                                color: '#ffffff'  // White color for y-axis labels
+                            }
+                        }
+                    }
+                }
+            });
+        })
+        .catch(error => console.error('Error fetching data:', error));
+});
+</script>
+
+<h1 style="text-align: center; color: #7bff00; font-size: 24px; font-weight: bold; margin-top: 20px;">Last 30 hours Humidity data from the current time</h1>
+
+<div class="graph2-container">
+    <canvas id="humidity-lineChart" class="graph2-chart"></canvas>
+</div>
+
+<!-- Humidity Line Chart -->
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    // Fetch data from the backend
+    fetch('/humidity-chart/')
+        .then(response => response.json())
+        .then(data => {
+            const ctx = document.getElementById("humidity-lineChart").getContext("2d");
+
+            const humidityChart = new Chart(ctx, {
+                type: 'line',  // Set chart type to line
+                data: {
+                    labels: data.labels,  // Use labels from backend
+                    datasets: [{
+                        label: 'Max Humidity',
+                        data: data.humidity_max,  // Max humidity data from backend
+                        backgroundColor: 'rgba(0, 255, 0, 0.2)',  // Fill color
+                        borderColor: '#28a745',  // Line color
+                        borderWidth: 2,
+                        tension: 0.4  // Smooth curve
+                    }, {
+                        label: 'Min Humidity',
+                        data: data.humidity_min,  // Min humidity data from backend
+                        backgroundColor: 'rgba(0, 123, 255, 0.2)',  // Fill color
+                        borderColor: '#007bff',  // Line color
+                        borderWidth: 2,
+                        tension: 0.4  // Smooth curve
+                    }]
+                },
+                options: {
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                            labels: {
+                                color: '#ffffff'  // White legend text
+                            }
+                        }
+                    },
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Time',
+                                color: '#ffffff'  // White color for x-axis title
+                            },
+                            ticks: {
+                                color: '#ffffff'  // White color for x-axis labels
+                            }
+                        },
+                        y: {
+                            title: {
+                                display: true,
+                                text: 'Humidity (%)',
+                                color: '#ffffff'  // White color for y-axis title
+                            },
+                            ticks: {
+                                color: '#ffffff'  // White color for y-axis labels
+                            }
+                        }
+                    }
+                }
+            });
+        })
+        .catch(error => console.error('Error fetching data:', error));
+});
+</script>
+
+<h1 style="text-align: center; color: #7bff00; font-size: 24px; font-weight: bold; margin-top: 20px;">Last 30 hours Lux level data from the current time</h1>
+<div class="graph2-container">
+    <canvas id="lux-level-lineChart" class="graph2-chart"></canvas>
+</div>
+
+<!-- Lux Level Line Chart -->
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    // Fetch data from the backend
+    fetch('/luxlevel-chart/')
+        .then(response => response.json())
+        .then(data => {
+            const ctx = document.getElementById("lux-level-lineChart").getContext("2d");
+
+            const luxLevelChart = new Chart(ctx, {
+                type: 'line',  // Set chart type to line
+                data: {
+                    labels: data.labels,  // Use labels from backend
+                    datasets: [{
+                        label: 'Max Lux Level',
+                        data: data.lux_level_max,  // Max lux level data from backend
+                        backgroundColor: 'rgba(255, 87, 51, 0.2)',  // Fill color
+                        borderColor: '#FF5733',  // Line color
+                        borderWidth: 2,
+                        tension: 0.4  // Smooth curve
+                    }, {
+                        label: 'Min Lux Level',
+                        data: data.lux_level_min,  // Min lux level data from backend
+                        backgroundColor: 'rgba(0, 123, 255, 0.2)',  // Fill color
+                        borderColor: '#007bff',  // Line color
+                        borderWidth: 2,
+                        tension: 0.4  // Smooth curve
+                    }]
+                },
+                options: {
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                            labels: {
+                                color: '#ffffff'  // White legend text
+                            }
+                        }
+                    },
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Time',
+                                color: '#ffffff'  // White color for x-axis title
+                            },
+                            ticks: {
+                                color: '#ffffff'  // White color for x-axis labels
+                            }
+                        },
+                        y: {
+                            title: {
+                                display: true,
+                                text: 'Lux Level',
+                                color: '#ffffff'  // White color for y-axis title
+                            },
+                            ticks: {
+                                color: '#ffffff'  // White color for y-axis labels
+                            }
+                        }
+                    }
+                }
+            });
+        })
+        .catch(error => console.error('Error fetching data:', error));
+});
+</script>
+
+
+<h1 style="text-align: center; color: #7bff00; font-size: 24px; font-weight: bold; margin-top: 20px;">Last 30 hours soil moisture data from the current time</h1>
+
+<div class="graph2-container">
+    <canvas id="soil-moisture-lineChart" class="graph2-chart"></canvas>
+</div>
+
+<!-- Soil Moisture Line Chart -->
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    // Fetch data from the backend
+    fetch('/soil/')
+        .then(response => response.json())
+        .then(data => {
+            const ctx = document.getElementById("soil-moisture-lineChart").getContext("2d");
+
+            const soilMoistureChart = new Chart(ctx, {
+                type: 'line',  // Set chart type to line
+                data: {
+                    labels: data.labels,  // Use labels from backend
+                    datasets: [{
+                        label: 'Max Soil Moisture',
+                        data: data.soil_moisture_max,  // Max soil moisture data from backend
+                        backgroundColor: 'rgba(0, 255, 0, 0.2)',  // Fill color
+                        borderColor: '#00FF00',  // Line color
+                        borderWidth: 2,
+                        tension: 0.4  // Smooth curve
+                    }, {
+                        label: 'Min Soil Moisture',
+                        data: data.soil_moisture_min,  // Min soil moisture data from backend
+                        backgroundColor: 'rgba(255, 0, 0, 0.2)',  // Fill color
+                        borderColor: '#FF0000',  // Line color
+                        borderWidth: 2,
+                        tension: 0.4  // Smooth curve
+                    }]
+                },
+                options: {
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                            labels: {
+                                color: '#ffffff'  // White legend text
+                            }
+                        }
+                    },
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Time',
+                                color: '#ffffff'  // White color for x-axis title
+                            },
+                            ticks: {
+                                color: '#ffffff'  // White color for x-axis labels
+                            }
+                        },
+                        y: {
+                            title: {
+                                display: true,
+                                text: 'Soil Moisture',
+                                color: '#ffffff'  // White color for y-axis title
+                            },
+                            ticks: {
+                                color: '#ffffff'  // White color for y-axis labels
+                            }
+                        }
+                    }
+                }
+            });
+        })
+        .catch(error => console.error('Error fetching data:', error));
+});
+</script>
+
+
+<h1 style="text-align: center; color: #7bff00; font-size: 24px; font-weight: bold; margin-top: 20px;">Last 30 hours co2 data from the current time</h1>
+
+
+<div class="graph2-container">
+    <canvas id="co2-level-lineChart" class="graph2-chart"></canvas>
+</div>
+
+<!-- CO2 Level Line Chart -->
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    // Fetch data from the backend
+    fetch('/co2/')
+        .then(response => response.json())
+        .then(data => {
+            const ctx = document.getElementById("co2-level-lineChart").getContext("2d");
+
+            const co2Chart = new Chart(ctx, {
+                type: 'line',  // Set chart type to line
+                data: {
+                    labels: data.labels,  // Use labels from backend
+                    datasets: [{
+                        label: 'Max CO2 Level',
+                        data: data.co2_max,  // Max CO2 level data from backend
+                        backgroundColor: 'rgba(255, 87, 51, 0.2)',  // Fill color
+                        borderColor: '#FF5733',  // Line color
+                        borderWidth: 2,
+                        tension: 0.4  // Smooth curve
+                    }, {
+                        label: 'Min CO2 Level',
+                        data: data.co2_min,  // Min CO2 level data from backend
+                        backgroundColor: 'rgba(0, 123, 255, 0.2)',  // Fill color
+                        borderColor: '#007bff',  // Line color
+                        borderWidth: 2,
+                        tension: 0.4  // Smooth curve
+                    }]
+                },
+                options: {
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                            labels: {
+                                color: '#ffffff'  // White legend text
+                            }
+                        }
+                    },
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Time',
+                                color: '#ffffff'  // White color for x-axis title
+                            },
+                            ticks: {
+                                color: '#ffffff'  // White color for x-axis labels
+                            }
+                        },
+                        y: {
+                            title: {
+                                display: true,
+                                text: 'CO2 Level',
+                                color: '#ffffff'  // White color for y-axis title
+                            },
+                            ticks: {
+                                color: '#ffffff'  // White color for y-axis labels
+                            }
+                        }
+                    }
+                }
+            });
+        })
+        .catch(error => console.error('Error fetching data:', error));
+});
+</script>
+
+<h1 style="text-align: center; color: #7bff00; font-size: 24px; font-weight: bold; margin-top: 20px;">comparison center</h1>
+
+<div class="formfield">
+    <!-- index.html -->
+   <!-- index.html -->
+<p>Current time: {{ current_time }}</p>
+
+<form id="dataForm" method="post">
+    {% csrf_token %}
+    
+    <div class="formfield">
+        <label for="temperature">Temperature:</label>
+        <input type="number" step="any" id="temperature" name="temperature" required>
+    </div>
+
+    <div class="formfield">
+        <label for="humidity">Humidity:</label>
+        <input type="number" step="any" id="humidity" name="humidity" required>
+    </div>
+
+    <div class="formfield">
+        <label for="lux_level">Lux Level:</label>
+        <input type="number" step="any" id="lux_level" name="lux_level" required>
+    </div>
+
+    <div class="formfield">
+        <label for="soil_moisture">Soil Moisture:</label>
+        <input type="number" step="any" id="soil_moisture" name="soil_moisture" required>
+    </div>
+
+    <div class="formfield">
+        <label for="co2">CO2 Level:</label>
+        <input type="number" step="any" id="co2" name="co2" required>
+    </div>
+
+    <div class="formfield">
+        <button type="submit">Submit</button>
+    </div>
+</form>
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<div id="inRangeMessages"></div> <!-- For in-range messages -->
+<div id="outOfRangeMessages"></div> <!-- For out-of-range messages -->
+
+<script>
+    // Handle the response from the server after the form is submitted
+    function handleResponse(data) {
+        const inRangeElement = document.getElementById('inRangeMessages');
+        const outOfRangeElement = document.getElementById('outOfRangeMessages');
+
+        // Clear any previous messages
+        inRangeElement.innerHTML = '';
+        outOfRangeElement.innerHTML = '';
+
+        // Display the overall message
+        if (data.in_range_message.length > 0) {
+            inRangeElement.innerHTML += `<div class="success-message">${data.message}</div>`;
+        } else {
+            outOfRangeElement.innerHTML += `<div class="error-message">${data.message}</div>`;
+        }
+
+        // Display in-range messages
+        if (data.in_range_message.length > 0) {
+            let inRangeDetails = '<ul>';
+            data.in_range_message.forEach(function(msg) {
+                inRangeDetails += `<li>${msg}</li>`;
+            });
+            inRangeDetails += '</ul>';
+            inRangeElement.innerHTML += inRangeDetails;
+        }
+
+        // Display out-of-range messages
+        if (data.out_of_range_message.length > 0) {
+            let outOfRangeDetails = '<ul>';
+            data.out_of_range_message.forEach(function(msg) {
+                outOfRangeDetails += `<li>${msg}</li>`;
+            });
+            outOfRangeDetails += '</ul>';
+            outOfRangeElement.innerHTML += outOfRangeDetails;
+        }
+    }
+
+    // AJAX form submission
+    $('#dataForm').on('submit', function(event) {
+        event.preventDefault();
+
+        $.ajax({
+            type: 'POST',
+            url: '/dataentry/',  // Update with the correct URL for your Django view
+            data: $(this).serialize(),
+            success: function(response) {
+                handleResponse(response);
+            },
+            error: function(xhr, status, error) {
+                alert("An error occurred: " + error);
+            }
+        });
+    });
+</script>
+
+
+
+
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script src="{% static 'js/scripts.js' %}"></script>
+</body>
+</html>

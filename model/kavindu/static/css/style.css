@@ -1,0 +1,293 @@
+/* General Page Styles */
+/* General body styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #4e008d;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    transition: background-color 0.3s ease; /* Smooth transition for background color */
+}
+
+/* Heading Styles */
+h1 {
+    text-align: center;
+    color: #2bff00;
+    font-size: 28px;
+    margin: 20px 0;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* Table Styles */
+table {
+    width: 90%;
+    margin: 30px auto;
+    border-collapse: collapse;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+}
+
+table th, table td {
+    padding: 15px;
+    text-align: center;
+    border-bottom: 2px solid #eee;
+    font-size: 14px;
+}
+
+/* Table Header */
+table th {
+    background: linear-gradient(135deg, #2980B9, #8E44AD);
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+table td {
+    background-color: #f9f9f9;
+    transition: background-color 0.3s ease;
+}
+
+/* Table Row Hover Effects */
+table tr:nth-child(even) td {
+    background-color: #f3f3f3;
+}
+
+table tr:hover {
+    background-color: #f1f1f1;
+    transform: scale(1.02);
+}
+
+/* Colorful Row Hover Effect */
+table tr:nth-child(odd):hover {
+    background-color: rgba(30, 255, 0, 0.2);
+}
+
+table td:hover {
+    background-color: #f7c7f3;
+    cursor: pointer;
+}
+
+/* Button Styles */
+button {
+    background: linear-gradient(135deg, #e74c3c, #f39c12);
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 8px;
+    margin: 20px auto;
+    transition: background 0.4s ease, transform 0.2s ease;
+    display: block;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Button Hover Effect */
+button:hover {
+    background: linear-gradient(135deg, #f39c12, #e74c3c);
+    transform: translateY(-4px);
+}
+
+button:active {
+    transform: translateY(2px);
+    background: linear-gradient(135deg, #c0392b, #f39c12);
+}
+
+/* Responsive Design for Tablets and Mobile */
+@media (max-width: 768px) {
+    table {
+        width: 100%;
+        margin: 10px auto;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+
+    table th, table td {
+        padding: 12px;
+        font-size: 13px; /* Reduce font size for smaller screens */
+    }
+
+    button {
+        font-size: 16px;
+        padding: 12px 24px;
+    }
+}
+
+/* Responsive Design for Very Small Mobile Devices */
+@media (max-width: 480px) {
+    h1 {
+        font-size: 20px;
+    }
+
+    table th, table td {
+        padding: 10px;
+        font-size: 12px; /* Further reduce font size for very small screens */
+    }
+
+    button {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+}
+
+/* Chart Container and Styling */
+.graph2-container {
+    width: 100%;
+    max-width: 1200px; /* Limit max width for large screens */
+    height: 400px; /* Adjust the height as needed */
+    margin: 0 auto; /* Center align the chart container */
+    padding: 20px;
+    background-color: #1a1a1a; /* Dark background to make the chart stand out */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Shadow effect for depth */
+    box-sizing: border-box; /* Ensure padding doesn't affect width */
+}
+
+/* Styling for the chart canvas */
+.graph2-chart {
+    width: 100% !important;  /* Ensures full width */
+    height: 100% !important; /* Ensures full height */
+    border-radius: 8px; /* Rounded corners for the chart */
+    background-color: #333; /* Slightly darker background to match container */
+}
+
+/* Optional: Style for the legend, if displayed */
+.chart-legend {
+    font-family: 'Arial', sans-serif;
+    font-size: 14px;
+    color: #ffffff; /* White legend text */
+}
+
+/* Styling for the chart title */
+h2.chart-title {
+    text-align: center;
+    color: #ffffff;
+    font-size: 24px;
+    font-family: 'Arial', sans-serif;
+    margin-bottom: 15px;
+}
+
+
+
+/* Responsive design for smaller screens (mobile) */
+@media (max-width: 768px) {
+    .graph2-container {
+        height: 300px; /* Adjust height for smaller screens */
+        padding: 10px; /* Reduced padding on mobile */
+    }
+
+    .graph2-chart {
+        height: 100% !important; /* Ensure the chart remains responsive */
+    }
+
+    h2.chart-title {
+        font-size: 20px; /* Smaller font size for the title on mobile */
+    }
+}
+
+/* Responsive design for very small screens (extra mobile) */
+@media (max-width: 480px) {
+    .graph2-container {
+        height: 250px; /* Further reduce height on very small screens */
+    }
+
+    h2.chart-title {
+        font-size: 18px; /* Further reduce font size on very small screens */
+    }
+}
+
+
+
+/* Custom form styling */
+.formfield {
+    background-color: black; /* Black background for the entire form */
+    color: white; /* White text color */
+    padding: 20px; /* Add padding around the form */
+    border-radius: 10px; /* Rounded corners for the form */
+    max-width: 600px; /* Set a maximum width for the form */
+    margin: 0 auto; /* Center the form horizontally */
+    border: 2px solid green; /* Green border around the form */
+}
+
+/* Form field styling */
+.formfield .form-group {
+    margin-bottom: 20px; /* Space between form groups */
+}
+
+.formfield label {
+    font-size: 16px; /* Label font size */
+    display: block; /* Make labels block elements to stack them */
+    margin-bottom: 5px; /* Space between label and input */
+}
+
+.formfield input, .formfield select, .formfield textarea {
+    width: 100%; /* Make input fields fill the container */
+    padding: 10px; /* Add padding inside the input fields */
+    background-color: #d3d3d3; /* Gray background for the input fields */
+    border: 1px solid #ccc; /* Light border for input fields */
+    border-radius: 5px; /* Rounded corners for input fields */
+    color: black; /* Black text inside the input fields */
+    font-size: 14px; /* Font size for input fields */
+}
+
+/* Styling for the submit button */
+.formfield .btn {
+    background-color: green; /* Green background for the button */
+    color: white; /* White text for the button */
+    padding: 10px 20px; /* Add padding inside the button */
+    border: none; /* Remove default button border */
+    border-radius: 5px; /* Rounded corners for the button */
+    cursor: pointer; /* Change cursor to pointer when hovering */
+    font-size: 16px; /* Button font size */
+    transition: background-color 0.3s; /* Smooth transition on hover */
+}
+
+/* Button hover effect */
+.formfield .btn:hover {
+    background-color: darkgreen; /* Darker green background on hover */
+}
+
+/* Responsive design: Adjust form size on smaller screens */
+@media (max-width: 768px) {
+    .formfield {
+        padding: 15px; /* Less padding on smaller screens */
+        max-width: 100%; /* Allow the form to take full width on small screens */
+    }
+}
+
+/* Add this to your styles.css or inline style */
+.success-message {
+    font-size: 16px;
+    color: green;
+    background-color: #d4edda;
+    padding: 10px;
+    border: 1px solid #c3e6cb;
+    border-radius: 5px;
+}
+
+.error-message {
+    font-size: 16px;
+    color: red;
+    background-color: #f8d7da;
+    padding: 10px;
+    border: 1px solid #f5c6cb;
+    border-radius: 5px;
+}
+
+/* Optional: Style the separate message sections */
+#inRangeMessages, #outOfRangeMessages {
+    margin-top: 20px;
+}
+#inRangeMessages ul, #outOfRangeMessages ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+#inRangeMessages li, #outOfRangeMessages li {
+    margin: 5px 0;
+}
