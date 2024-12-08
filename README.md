@@ -114,8 +114,9 @@ The following diagram illustrates the overall architecture of our Smart Greenhou
 ## Team Members and Roles
 - **Malshika A.I:** Implement a real-time feedback system to adjust heating, cooling, and ventilation based on predictive analytics to maintain optimal climate conditions.
 - **Weerasingha W.A.N.S:** Lighting system design and automation.
-- **Premathilakage K.N.P:** Energy management and mobile app development.
-- **Abeyweera M.P.C.S:** System design and overall testing.
+- **Premathilakage K.N.P:** Energy management and Dashboard development.
+- **Abeyweera M.P.C.S:** irrigation system that adjusts water delivery based on real-time soil moisture data and plant needs.
+
 
 **Supervisors:**
 - Mrs. Thamali Kelegama, Faculty of Computing
@@ -124,9 +125,9 @@ The following diagram illustrates the overall architecture of our Smart Greenhou
 ---
 
 ## Future Enhancements
-1. Develop advanced machine learning algorithms for predictive climate control.
-2. Expand mobile app features for better user interaction and analytics.
-3. Optimize the system for larger-scale applications in commercial greenhouses.
+
+1. Expand Dashboard features for better user interaction and analytics.
+2. Optimize the system for larger-scale applications in commercial greenhouses.
 
 ---
 
