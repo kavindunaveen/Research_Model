@@ -1,134 +1,155 @@
-![image](https://github.com/user-attachments/assets/7f77b220-1221-4e05-81ca-7f358cb10916)# Smart Greenhouse IoT Project
+# 🌿 Smart Greenhouse IoT Project 🌱
 
-## Project Overview
-The **Smart Greenhouse IoT Project** aims to revolutionize traditional farming practices by introducing a comprehensive and automated solution to monitor and control greenhouse conditions. This project combines **IoT (Internet of Things)** technologies with advanced automation to ensure optimal conditions for plant growth, minimize manual intervention, and increase efficiency.
-
-Our system integrates **real-time monitoring**, **cloud connectivity**, and **remote control** to manage key environmental factors such as temperature, humidity, soil moisture, light intensity, and water levels. By leveraging data-driven insights and automated control systems, this project contributes to sustainable agriculture and resource optimization.
+Welcome to the **Smart Greenhouse IoT Project**, an innovative system that integrates IoT, machine learning, and energy-efficient technologies to revolutionize traditional farming practices. This project focuses on optimizing environmental parameters in a greenhouse using real-time monitoring, automated control, and predictive analytics, ensuring enhanced plant growth and sustainable agriculture.
 
 ---
 
-## Features of the Smart Greenhouse System
-- **Real-Time Data Collection:**
-  - Sensors measure temperature, humidity, soil moisture, light intensity, and water levels.
-  - Live data is sent to Firebase for analysis and remote access.
-  
-- **Automation and Control:**
-  - Actuators (fans, pumps, humidifiers, solenoid valves) respond to predefined thresholds for automatic climate control.
-  - Lighting systems provide supplemental lighting based on light intensity readings.
+## 🚀 Project Overview
 
-- **Remote Monitoring and Manual Override:**
-  - Users can access real-time data and control the system manually via a mobile app or dashboard.
-  
-- **Energy Efficiency:**
-  - Adaptive climate control minimizes energy consumption while maintaining optimal growing conditions.
+The **Smart Greenhouse IoT Project** addresses challenges in traditional greenhouse management by automating critical systems such as climate control, lighting, energy, and irrigation. Leveraging advanced IoT devices, sensors, and machine learning models, the system dynamically adjusts environmental parameters to maintain ideal conditions for plant growth while minimizing energy usage and human intervention.
 
 ---
 
-## Research Questions
-1. What is the impact of IoT-based climate control systems in improving efficiency and reducing manual intervention in greenhouses?
-2. How can real-time data and automated controls ensure optimal plant growth conditions?
+## 🌟 Key Features
+
+### **Real-Time Monitoring**
+- Sensors measure temperature, humidity, soil moisture, light intensity, and water levels.
+- Data is sent to the cloud for real-time access and analysis.
+
+### **Automated Control**
+- Actuators (fans, pumps, lights, humidifiers, and solenoid valves) respond automatically to sensor data to optimize conditions.
+
+### **Energy Efficiency**
+- Machine learning models predict and adjust environmental settings to save energy and reduce carbon footprints.
+
+### **Remote Accessibility**
+- A web dashboard allow users to monitor and control the system from anywhere.
+
+### **User Notifications**
+- Alerts notify users when environmental parameters deviate from predefined thresholds or when adjustments are made.
 
 ---
 
-## Objectives
-1. Develop an IoT-based greenhouse system to optimize plant growth conditions.
-2. Automate climate control, irrigation, and lighting systems using real-time data.
-3. Provide remote monitoring and control via a mobile app or cloud platform.
-4. Evaluate system performance to ensure sustainability and efficiency.
+## 📘 Research Questions
+
+1. How can IoT-based systems optimize climate control, lighting, energy, and irrigation in greenhouses?
+2. How does integrating machine learning improve energy efficiency and sustainability in greenhouse operations?
+3. What is the impact of automated systems on plant growth and resource management?
 
 ---
 
-## Methodology
-1. **Data Collection:**
-   - Sensors collect environmental data, including temperature, humidity, water level, and light intensity.
-   
-2. **Data Processing:**
-   - The ESP32 microcontroller processes sensor data and uploads it to Firebase for cloud storage.
-   
-3. **Automation:**
-   - Predefined thresholds trigger actuators for tasks like irrigation, ventilation, and lighting adjustments.
-   
-4. **Manual Override:**
-   - Users can override automation settings and control actuators remotely through a mobile app.
-   
-5. **Evaluation:**
-   - The system is tested for efficiency, usability, and reliability in real-world greenhouse conditions.
+## 🎯 Objectives
+
+1. Implement an IoT-based system for real-time monitoring and control of greenhouse parameters.
+2. Automate climate control, lighting, and irrigation systems using predictive analytics.
+3. Optimize energy usage to reduce greenhouse operational costs and environmental impact.
+4. Provide a user-friendly dashboard for manual and automated system management.
+5. Evaluate the system's performance in improving plant growth and resource efficiency.
 
 ---
 
-## System Workflow
-1. **Startup:**
-   - Connect the system to a power source.
-   - Connect the ESP32 microcontroller to Wi-Fi.
-   
-2. **Data Collection:**
-   - Sensors collect environmental data and send it to the microcontroller.
-   
-3. **Cloud Integration:**
-   - Data is transmitted to Firebase for real-time monitoring and storage.
-   
-4. **Control and Automation:**
-   - Based on sensor readings, actuators are triggered automatically.
-   - Users can manually override automation via the mobile app.
-   
-5. **Feedback and Adjustments:**
-   - Notifications are sent to users for critical changes (e.g., low water levels, high temperature).
-   - Users can make adjustments as needed.
+## 📊 System Workflow
+
+1. **Data Collection**: Sensors gather data on temperature, humidity, soil moisture, water levels, and light intensity.
+2. **Data Processing**: The ESP32 microcontroller processes sensor data and sends it to Firebase for cloud storage.
+3. **Automation**: Actuators are triggered based on predefined thresholds and machine learning predictions.
+4. **Manual Override**: Users can control actuators via a web dashboard.
+5. **Notifications**: Alerts are sent for parameter deviations or system adjustments.
 
 ---
-## System Diagram
 
-The following diagram illustrates the overall architecture of our Smart Greenhouse IoT system:
+## 🔧 Tools and Technologies
+
+### **IoT and Hardware**
+- **Microcontroller**: ESP32
+- **Sensors**:
+  - DHT11: Measures temperature and humidity.
+  - Ultrasonic Sensor: Monitors water levels.
+  - Float Sensor: Detects water presence.
+  - BH1750: Measures light intensity.
+- **Actuators**:
+  - Fans, humidifiers, solenoid valves, water pumps, and LED lighting systems.
+
+### **Cloud and Backend**
+- **Firebase**: Real-time data storage and remote control.
+- **Django Framework**: Backend system for web applications and dashboards.
+
+### **Machine Learning**
+- **scikit-learn**: Predicts optimal environmental conditions based on historical data.
+
+### **Visualization and Notifications**
+- **Chart.js**: Interactive data visualization on the dashboard.
+- **Twilio**: Sends SMS notifications to users.
+
+### **Database**
+- SQLite: Stores historical sensor data and predictions.
+
+---
+
+## 🔄 System Diagram
+
+The following diagram illustrates the system's architecture:
 
 ![System Diagram](https://drive.google.com/uc?id=1dhIlv7QAJmPtYJb74kv8VG2FebXt8eGp)
 
+---
 
+## 🛠️ Project Phases
 
-## Tools and Technologies
-- **Microcontroller:** ESP32
-- **Sensors:**
-  - DHT11: Measures temperature and humidity.
-  - Ultrasonic Sensor: Monitors water levels.
-  - Float Sensor: Detects water presence for irrigation.
-  
-- **Actuators:**
-  - Fans, humidifiers, solenoid valves, pumps, and dimmable lights.
-
-- **Cloud Platform:** Firebase for real-time data storage and control.
-- **Software Tools:** Arduino IDE, Firebase SDK, Python for additional data analysis.
+| **Phase**       | **Description**                                                                             |
+|------------------|---------------------------------------------------------------------------------------------|
+| **1. Research**        | Define objectives, identify challenges, and design the system architecture.            |
+| **2. Design**          | Develop hardware diagrams, select components, and create software structure.          |
+| **3. Development**     | Assemble hardware, write firmware, and test individual modules.                       |
+| **4. Integration**     | Combine hardware and software, integrate machine learning, and implement automation.  |
+| **5. Testing**         | Test the system for reliability, usability, and performance.                          |
+| **6. Deployment**      | Deploy the system in a greenhouse environment for real-world validation.              |
 
 ---
 
-## Work Breakdown Structure
-| **Phase**             | **Tasks**                                                                                       |
-|-----------------------|------------------------------------------------------------------------------------------------|
-| **1. Initialization** | Define objectives, perform literature review, and finalize system design.                      |
-| **2. Design**         | Develop hardware diagrams, create component lists, and finalize the software architecture.     |
-| **3. Development**    | Assemble hardware components, write firmware, and test individual modules (sensors, actuators).|
-| **4. Integration**    | Combine all components, integrate Firebase, and test system automation.                        |
-| **5. Testing**        | Evaluate system performance, collect feedback, and optimize for reliability.                   |
-| **6. Deployment**     | Deploy the system in a real-world greenhouse environment and monitor performance.              |
+## 📜 Current Progress
+
+| **Task**                     | **Status**        |
+|------------------------------|-------------------|
+| Hardware Setup               | Completed         |
+| Sensor Integration           | Completed         |
+| Database Connection          | Completed         |
+| Manual Control via Dashboard | In Progress       |
+| Automation Logic             | In Progress       |
+| Dashboard Development        | In progress           |
 
 ---
 
-## Team Members and Roles
-- **Malshika A.I:** Implement a real-time feedback system to adjust heating, cooling, and ventilation based on predictive analytics to maintain optimal climate conditions.
-- **Weerasingha W.A.N.S:** Lighting system design and automation.
-- **Premathilakage K.N.P:** Energy management and Dashboard development.
-- **Abeyweera M.P.C.S:** irrigation system that adjusts water delivery based on real-time soil moisture data and plant needs.
+## 🔮 Future Enhancements
 
-
-**Supervisors:**
-- Mrs. Thamali Kelegama, Faculty of Computing
-- Ms. Aparna Jayawardena, Assistant Lecturer
+1. **Dashboard Development**: Add advanced analytics and real-time data visualization.
+2. **Notifications**: Improve notifications with detailed alerts and insights.
+3. **Energy Optimization**:
+   - Further reduce energy usage through dynamic adjustments.
+   - Explore renewable energy integration.
+4. **Scalability**: Optimize the system for large-scale greenhouses.
 
 ---
 
-## Future Enhancements
+## 👨‍💻 Team Members and Roles
 
-1. Expand Dashboard features for better user interaction and analytics.
-2. Optimize the system for larger-scale applications in commercial greenhouses.
+- **Malshika A.I**: Climate control and predictive analytics.
+- **Weerasingha W.A.N.S**: Lighting system design and automation.
+- **Premathilakage K.N.P**: Energy management and dashboard development.
+- **Abeyweera M.P.C.S**: Irrigation system and real-time adjustments based on soil moisture data.
+
+**Supervisors**:
+- Mrs. Thamali Kelegama (Faculty of Computing)
+- Ms. Aparna Jayawardena (Assistant Lecturer)
 
 ---
 
+## 🤝 Contributing
 
+We welcome contributions! If you'd like to contribute to this project, please submit a pull request or open an issue.
+
+---
+
+## 📱 Contact
+
+For inquiries or suggestions, feel free to reach out via email or GitHub issues.
